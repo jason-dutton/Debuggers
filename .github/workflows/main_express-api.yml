@@ -6,7 +6,7 @@ name: Express - Build and Deploy
 on:
   push:
     branches:
-      - main
+      - 'main'
     paths:
       - "src/apps/services/**"
   workflow_dispatch:

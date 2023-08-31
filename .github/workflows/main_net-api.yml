@@ -6,7 +6,7 @@ name: Dotnet - Build and Deploy
 on:
   push:
     branches:
-      - main
+      - 'main'
     paths:
       - "src/apps/api/**"
   workflow_dispatch:

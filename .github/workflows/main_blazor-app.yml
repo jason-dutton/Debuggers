@@ -6,7 +6,7 @@ name: Blazor app - Build and Deploy
 on:
   push:
     branches:
-      - main
+      - 'main'
     paths:
       - "src/apps/blazor-app/**"
   workflow_dispatch:
