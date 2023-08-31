@@ -63,4 +63,3 @@ jobs:
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D7F454C224574AE9B75ADDA2807DFA0A }}
           package: .
-          images: "mcr.microsoft.com/dotnet/aspnet:7.0"
