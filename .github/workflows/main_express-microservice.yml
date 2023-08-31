@@ -6,7 +6,7 @@ name: Express - Build and Deploy
 on:
   push:
     branches:
-      - 'main'
+      - main
     paths:
       - "src/apps/services/**"
   workflow_dispatch:
@@ -25,7 +25,7 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
-          node-version: "18.x"
+          node-version: '18.x'
 
       - name: yarn install and build
         uses: actions/setup-node@v3
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: "Production"
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -60,15 +60,11 @@ jobs:
         with:
           name: node-app
 
-      - run: mv dist/apps/services/* .
-
-      - run: yarn --production
-
-      - name: "Deploy to Azure Web App"
+      - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "express-api"
-          slot-name: "Production"
+          app-name: 'express-microservice'
+          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B5AD89411527464CA08BE8E4F87274B2 }}
           package: .
