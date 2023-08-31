@@ -66,5 +66,5 @@ jobs:
         with:
           app-name: 'express-microservice'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B5AD89411527464CA08BE8E4F87274B2 }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: .
