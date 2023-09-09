@@ -64,6 +64,16 @@ jobs:
       - run: mv dist/apps/services/* .
 
       - run: yarn --production
+      
+      - name: "Install Python and Earth Engine API"
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+      - run: |
+          wget https://bootstrap.pypa.io/get-pip.py 
+          python3 ./get-pip.py 
+          python3 -m pip install earthengine-api --upgrade
+          python3 -m pip install python-dotenv
 
       - name: "Deploy to Azure Web App"
         id: deploy-to-webapp
