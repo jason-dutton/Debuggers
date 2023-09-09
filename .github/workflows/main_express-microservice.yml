@@ -46,8 +46,7 @@ jobs:
           name: node-app
           path: |
             src/dist/apps/services
-            src/package.json
-            src/
+            src/package.jsonS
 
   deploy:
     runs-on: ubuntu-latest
