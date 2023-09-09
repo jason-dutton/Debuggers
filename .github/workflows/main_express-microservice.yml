@@ -67,9 +67,7 @@ jobs:
       - run: yarn --production
 
       - name: Install dependencies
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.x"
+        uses: actions/checkout@v3
       - run: |
           wget https://bootstrap.pypa.io/get-pip.py 
           python3 ./get-pip.py
