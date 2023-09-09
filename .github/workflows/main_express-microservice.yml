@@ -65,13 +65,13 @@ jobs:
 
       - run: yarn --production
       
-      - uses: actions/checkout@v3
       - name: setup python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.8"
-          cache: 'pip'
-      - run: pip install earthengine-api --upgrade
+        uses: actions/checkout@v3
+
+      - run: |
+          wget https://bootstrap.pypa.io/get-pip.py 
+          python3 ./get-pip.py 
+          python3 -m pip install earthengine-api --upgrade
 
       - name: "Deploy to Azure Web App"
         id: deploy-to-webapp
