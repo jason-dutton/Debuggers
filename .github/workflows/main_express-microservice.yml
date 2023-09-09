@@ -47,8 +47,8 @@ jobs:
           path: |
             src/dist/apps/services
             src/package.json
-            src/scripts/
-            !src/requirements.txt
+            src/scripts/*
+            src/requirements.txt
 
   deploy:
     runs-on: ubuntu-latest
@@ -63,6 +63,12 @@ jobs:
         with:
           name: node-app
 
+      - name: Debug - List artifact contents after download
+        run: |
+          ls -R $GITHUB_WORKSPACE
+          ls -R $GITHUB_WORKSPACE/src
+          cat $GITHUB_WORKSPACE/src/requirements.txt
+
       - run: mv dist/apps/services/* .
 
       - run: yarn --production
@@ -70,8 +76,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
-          cache: 'pip'
+          python-version: "3.9"
+          cache: "pip"
       - run: pip install -r requirements.txt
 
       - name: "Deploy to Azure Web App"
