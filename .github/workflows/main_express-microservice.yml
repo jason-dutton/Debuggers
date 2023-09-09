@@ -47,12 +47,8 @@ jobs:
           path: |
             src/dist/apps/services
             src/package.json
-            src/scripts
+            src/scripts/
             src/requirements.txt
-      
-      - name: List artifact contents
-        run: |
-          ls -R $GITHUB_WORKSPACE
 
   deploy:
     runs-on: ubuntu-latest
