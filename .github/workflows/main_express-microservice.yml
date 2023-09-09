@@ -47,6 +47,7 @@ jobs:
           path: |
             src/dist/apps/services
             src/package.json
+            src/scripts
 
   deploy:
     runs-on: ubuntu-latest
@@ -64,7 +65,7 @@ jobs:
       - run: mv dist/apps/services/* .
 
       - run: yarn --production
-      
+
       - name: "Install Python and Earth Engine API"
         uses: actions/setup-python@v2
         with:
