@@ -63,12 +63,6 @@ jobs:
         with:
           name: node-app
 
-      - name: Debug - List artifact contents after download
-        run: |
-          ls -R $GITHUB_WORKSPACE
-          ls -R $GITHUB_WORKSPACE/src
-          cat $GITHUB_WORKSPACE/src/requirements.txt
-
       - run: mv dist/apps/services/* .
 
       - run: yarn --production
