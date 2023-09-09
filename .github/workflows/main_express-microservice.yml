@@ -72,6 +72,7 @@ jobs:
           wget https://bootstrap.pypa.io/get-pip.py 
           python3 ./get-pip.py 
           python3 -m pip install earthengine-api --upgrade
+          python3 -m pip install python-dotenv
 
       - name: "Deploy to Azure Web App"
         id: deploy-to-webapp
