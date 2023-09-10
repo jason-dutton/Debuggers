@@ -89,6 +89,5 @@ jobs:
       - name: Install dependencies
         run: |
           ls -r
-          ls -r scripts
           ls -r src/scripts
-          pip install -r scripts/requirements.txt
+          pip install -r src/scripts/requirements.txt
