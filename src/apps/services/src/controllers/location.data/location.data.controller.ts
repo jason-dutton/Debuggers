@@ -369,8 +369,14 @@ export default class LocationDataController {
     const long = parseFloat(longitude.replace(',', '.'));
     const previousYear = new Date().getFullYear() - 1;
     try {
-      const result = await this.executePython('scripts/test.py', []);
-      console.log(result);
+      this.executePython('scripts/solarRadiation.py', [
+        lat,
+        long,
+        previousYear,
+        numYears,
+        numDaysPerYear,
+      ]);
+
       res.status(200).json({
         message: 'Solar Data retrieved successfully.',
       });
