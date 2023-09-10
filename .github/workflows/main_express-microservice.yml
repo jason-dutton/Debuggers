@@ -76,14 +76,6 @@ jobs:
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B5AD89411527464CA08BE8E4F87274B2 }}
           package: .
 
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: "3.10.10"
-          cache: "pip"
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
   install-dependencies:
     runs-on: ubuntu-latest
     needs: deploy
