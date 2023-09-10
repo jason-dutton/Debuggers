@@ -9,6 +9,7 @@ on:
       - "main"
     paths:
       - "src/apps/api/**"
+      - ".github/workflows/main_dot-net-api.yml"
   workflow_dispatch:
 
 jobs:

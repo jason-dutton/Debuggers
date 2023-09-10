@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - "src/apps/blazor-app/**"
+      - ".github/workflows/main_blazor-appl.yml"
   workflow_dispatch:
 
 jobs:
