@@ -47,8 +47,6 @@ jobs:
           path: |
             src/dist/apps/services
             src/package.json
-            src/scripts
-            src/scripts/requirements.txt
 
   deploy:
     runs-on: ubuntu-latest
@@ -75,16 +73,3 @@ jobs:
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B5AD89411527464CA08BE8E4F87274B2 }}
           package: .
-
-  install-dependencies:
-    runs-on: ubuntu-latest
-    needs: deploy
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: "3.10.10"
-          cache: "pip"
-      - name: Install dependencies
-        run: pip install -r src/scripts/requirements.txt

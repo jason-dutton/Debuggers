@@ -5,9 +5,9 @@ import sys
 import concurrent.futures
 import threading
 import json
+import requests
 from dotenv import load_dotenv
 from google.oauth2 import service_account
-import requests
 import ee
 
 LATITUDE = float(sys.argv[1].replace(",", "."))
