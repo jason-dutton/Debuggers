@@ -65,14 +65,6 @@ jobs:
 
       - run: mv dist/apps/services/* .
 
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.10.10'
-          cache: 'pip'
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
       - run: yarn --production
 
       - name: "Deploy to Azure Web App"
@@ -83,3 +75,11 @@ jobs:
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B5AD89411527464CA08BE8E4F87274B2 }}
           package: .
+
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.10.10'
+          cache: 'pip'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
