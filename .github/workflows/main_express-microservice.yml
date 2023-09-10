@@ -49,6 +49,7 @@ jobs:
             src/package.json
             src/scripts
             src/README.md
+            src/requirements.txt
 
   deploy:
     runs-on: ubuntu-latest
