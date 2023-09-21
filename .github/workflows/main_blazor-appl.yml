@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy - blazor-appl
+name: Blazor-appl - Build and deploy
 
 on:
   push:
@@ -30,7 +30,9 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build -c Release
+        run: |
+          yarn
+          dotnet build -c Release
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ./publish
