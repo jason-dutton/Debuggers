@@ -57,8 +57,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: .net-app
+      
+      - run: mv publish/* .
 
-      - run: mv publish/wwwroot/* .
+      - run: mv wwwroot/* .
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
