@@ -56,8 +56,10 @@ jobs:
         with:
           name: .net-app
       
-      - run: mv wwwroot/* .
-      
+      - run: |
+            mv wwwroot/* .
+            mv js/* .
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
