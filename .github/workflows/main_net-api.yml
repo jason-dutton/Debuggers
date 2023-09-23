@@ -7,11 +7,18 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "src/apps/api/**"
+      - ".github/workflows/main_net-api.yml"
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
+
+    defaults:
+      run:
+        working-directory: src/apps/api
 
     steps:
       - uses: actions/checkout@v2
@@ -26,13 +33,13 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o ./publish
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: src/apps/api/publish
 
   deploy:
     runs-on: windows-latest
