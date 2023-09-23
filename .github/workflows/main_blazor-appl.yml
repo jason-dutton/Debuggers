@@ -41,7 +41,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: .net-app
-          path: src/apps/blazor-app/publish
+          path: |
+              src/apps/blazor-app/publish
+              src/apps/blazor-app/glibc-2.29.tar.gz
 
   deploy:
     runs-on: ubuntu-latest
