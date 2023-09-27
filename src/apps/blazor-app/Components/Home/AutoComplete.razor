@@ -1,8 +1,6 @@
 @using System.Net.Http
 @using System.Net.Http.Json
 @using Microsoft.JSInterop
-@using System.Timers
-@implements IDisposable
 @inject IJSRuntime JSRuntime
 @inject ProtectedSessionStorage ProtectedSessionStorage
 
@@ -22,7 +20,7 @@
         </div>
         <input
             class="pl-20 w-full rounded-full h-16 py-1.5 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6 focus:border-none focus:ring-0 focus:outline-none focus:bg-primary-50"
-            type="text" @bind="searchQuery" @onfocus="ShowSuggestions" @onkeyup="ResetTimer" @onblur="HideSuggestions" @bind:event="oninput" placeholder="Enter your address" />
+            type="text" @bind="searchQuery" @onfocus="ShowSuggestions" @oninput="OnSearchInput" @onblur="HideSuggestions" placeholder="Enter your address" />
 
     </div>
     <div class="absolute z-50 transition-all duration-200  @(suggestions.Count == 0 ? "opacity-0 h-0 -translate-y-10" : "opacity-100") w-full bg-white top-full left-0">
@@ -71,14 +69,6 @@
     private string? API_PORT = Environment.GetEnvironmentVariable("API_PORT");
     private string searchQuery = "";
     private List<LocationSuggestion> suggestions = new List<LocationSuggestion>();
-        private Timer aTimer = default!;
-
-    protected override void OnInitialized(){
-        aTimer = new Timer(100);
-        aTimer.Elapsed += Search;
-        aTimer.AutoReset = false;
-        aTimer.Enabled = true;
-    }
 
     private async void OnSuggestionClick(LocationSuggestion suggestion)
     {
@@ -98,16 +88,14 @@
         await JSRuntime.InvokeVoidAsync("eval", "document.getElementById('suggestionList').style.display = 'block';");
     }
 
-    private async void Search(Object? source, ElapsedEventArgs e)
+    private async Task OnSearchInput(ChangeEventArgs e)
     {
-        suggestions = await otherDataClass.GetLocationSuggestions(System.Net.WebUtility.UrlEncode(searchQuery));   
-        await InvokeAsync( StateHasChanged );
-    }
-
-    void IDisposable.Dispose() => aTimer.Dispose();
-
-    private void ResetTimer(KeyboardEventArgs e){
-        aTimer.Stop();
-        aTimer.Start();
+        if(e.Value != null && e.Value.ToString() != "")
+        {
+            searchQuery = e.Value.ToString()!;
+            suggestions = await otherDataClass.GetLocationSuggestions(System.Net.WebUtility.UrlEncode(searchQuery));
+        } else {
+            suggestions = new List<LocationSuggestion>();
+        }
     }
 }
