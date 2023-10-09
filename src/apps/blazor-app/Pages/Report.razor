@@ -9,119 +9,119 @@
 <div class="pageA4 mx-auto">
     @if (isLoaded)
     {
-    <div id="report">
-        <div class="mx-auto w-fit">
-            <Image ImageName="Logo.svg" css="h-14 w-auto" alt="BlueSkies logo" />
-        </div>
-        <div class="space-y-2">
-            <div class="w-full">
-                <div class="">
+        <div id="report">
+            <div class="mx-auto w-fit">
+                <Image ImageName="Logo.svg" css="h-14 w-auto" alt="BlueSkies logo" />
+            </div>
+            <div class="space-y-2">
+                <div class="w-full">
+                    <div class="">
+                        <Heading>
+                            <Header>
+                                <h1 class="text-xl">Location</h1>
+                            </Header>
+                        </Heading>
+                        <div class="flex-col">
+                            <div class="h-[8cm] w-[8cm] mx-auto">
+                                <Map imageName="@SatteliteImage" />
+                            </div>
+                            <div class="flex flex-col w-fit mx-auto space-y-2">
+                                <LocationItem Title="Address" ImageName="Point On Map.svg"
+                                    Text=@locationData.locationName />
+                                <LocationItem Title="Solar Score" ImageName="Sale.svg" Text="@solarScore" />
+                                <div class="translate-x-1">
+                                    <LocationItem Title="Avg Energy Production" ImageName="Accumulator.svg"
+                                        Text="@avgEnergyProduction" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="w-full">
                     <Heading>
                         <Header>
-                            <h1 class="text-xl">Location</h1>
+                            <h1 class=" text-xl text-start">System Size</h1>
                         </Header>
                     </Heading>
-                    <div class="flex-col">
-                        <div class="h-[8cm] w-[8cm] mx-auto">
-                            <Map imageName="@SatteliteImage" />
-                        </div>
-                        <div class="flex flex-col w-fit mx-auto space-y-2">
-                            <LocationItem Title="Address" ImageName="Point On Map.svg"
-                                Text=@locationData.locationName />
-                            <LocationItem Title="Solar Score" ImageName="Sale.svg" Text="@solarScore" />
-                            <div class="translate-x-1">
-                                <LocationItem Title="Avg Energy Production" ImageName="Accumulator.svg"
-                                    Text="@avgEnergyProduction" />
-                            </div>
-                        </div>
+                    <div class="w-fit mx-auto flex space-x-3">
+                        <Appliance css="scale-75" ImageName="SolarPanels.svg" Name="Number of Panels"
+                            Count="@system.numberOfPanels" />
+                        <Appliance css="scale-75" ImageName="Batteries.svg" Name="Number of Batteries"
+                            Count="@system.numberOfBatteries" />
+                    </div>
+                    <div class="flex w-full justify-center items-center gap-1 mt-4">
+                        <p class="text-5xl text-primary-900 font-semibold">@system.inverterOutput</p>
+                        <p class="text-5xl text-gray-400 font-bold">kw</p>
                     </div>
                 </div>
-
-            </div>
-            <div class="w-full">
-                <Heading>
-                    <Header>
-                        <h1 class=" text-xl text-start">System Size</h1>
-                    </Header>
-                </Heading>
-                <div class="w-fit mx-auto flex space-x-3">
-                    <Appliance css="scale-75" ImageName="SolarPanels.svg" Name="Number of Panels"
-                        Count="@system.numberOfPanels" />
-                    <Appliance css="scale-75" ImageName="Batteries.svg" Name="Number of Batteries"
-                        Count="@system.numberOfBatteries" />
-                </div>
-                <div class="flex w-full justify-center items-center gap-1 mt-4">
-                    <p class="text-5xl text-primary-900 font-semibold">@system.inverterOutput</p>
-                    <p class="text-5xl text-gray-400 font-bold">kw</p>
-                </div>
-            </div>
-            <div class="w-full new-page">
-                <Heading>
-                    <Header>
-                        <h1 class="text-xl">Appliances</h1>
-                    </Header>
-                    <Subscript>
-                        <p>What do you want to run in a power outage?</p>
-                    </Subscript>
-                </Heading>
-                @* <div class="flex flex-wrap justify-center gap-2">
-                    @{
-                    for (int i = 0; i
-                    < reportAllAppliance.Count; i++) { if (reportAllAppliance[i].numberOfAppliances !=0) { var
-                        appliance=reportAllAppliance[i].type; var count=reportAllAppliance[i].numberOfAppliances; string
-                        iconName=appliance + ".svg" ; <Appliance css="scale-75" ImageName="@iconName" Name="@appliance"
-                        Count="@count" />
-                    }
-                    }
-                    if (reportAllAppliance.Count == 0)
-                    {
-                    <p class="text-center">No appliances added</p>
-                    }
-                    }
+                <div class="w-full new-page">
+                    <Heading>
+                        <Header>
+                            <h1 class="text-xl">Appliances</h1>
+                        </Header>
+                        <Subscript>
+                            <p>What do you want to run in a power outage?</p>
+                        </Subscript>
+                    </Heading>
+                    @* <div class="flex flex-wrap justify-center gap-2">
+                @{
+                for (int i = 0; i
+                < reportAllAppliance.Count; i++) { if (reportAllAppliance[i].numberOfAppliances !=0) { var
+                appliance=reportAllAppliance[i].type; var count=reportAllAppliance[i].numberOfAppliances; string
+                iconName=appliance + ".svg" ; <Appliance css="scale-75" ImageName="@iconName" Name="@appliance"
+                Count="@count" />
+                }
+                }
+                if (reportAllAppliance.Count == 0)
+                {
+                <p class="text-center">No appliances added</p>
+                }
+                }
                 </div> *@
-                <div>
-                    <Image ImageName="@homeSize" alt="House" css="scale-50" />
-                </div>
-
-                @* <div class="w-full flex">
-                    <div class="w-1/2">
-                        <div class="w-full flex flex-col gap-4 justify-start items-center">
-                            <h3 class="font-medium text-lg text-primary-900 text-center">Running Hours</h3>
-                            <div class="flex flex-col justify-center w-full">
-                                <Chart Config="pieConfig"></Chart>
-                                <p class="text-center text-base text-primary-900 font-semibold">
-                                    @locationData.daylightHours h</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="w-1/2">
-                        <h3 class="font-medium text-lg text-primary-900 text-center">Appliance Energy Consumption</h3>
-                        <Chart Config="polarAreaConfig"></Chart>
-                    </div>
-                </div> *@
-            </div> @* *@
-            @* Fancy Data *@
-            <div class="w-full new-page">
-                <Heading>
-                    <Header>
-                        <h1 class="text-xl">Fancy Data</h1>
-                    </Header>
-                    <Subscript>
-                        <p>More information about your area</p>
-                    </Subscript>
-                </Heading>
-                <div class="w-full">
                     <div>
-                        <h1 class="text-center">Your Solar flux</h1>
-                        <Image ImageName="@satteliteImageSrc" alt="Solar Sattelite Image" css="mx-auto" />
+                        <Image ImageName="@homeSize" alt="House" css="scale-50" />
                     </div>
-                    <ElevationGraph elevationValues="@locationData.horisonElevationData" animated="false" />
+
+                    @* <div class="w-full flex">
+                <div class="w-1/2">
+                <div class="w-full flex flex-col gap-4 justify-start items-center">
+                <h3 class="font-medium text-lg text-primary-900 text-center">Running Hours</h3>
+                <div class="flex flex-col justify-center w-full">
+                <Chart Config="pieConfig"></Chart>
+                <p class="text-center text-base text-primary-900 font-semibold">
+                @locationData.daylightHours h</p>
+                </div>
+                </div>
+
+                </div>
+
+                <div class="w-1/2">
+                <h3 class="font-medium text-lg text-primary-900 text-center">Appliance Energy Consumption</h3>
+                <Chart Config="polarAreaConfig"></Chart>
+                </div>
+                </div> *@
+                </div> @* *@
+                @* Fancy Data *@
+                <div class="w-full new-page">
+                    <Heading>
+                        <Header>
+                            <h1 class="text-xl">Fancy Data</h1>
+                        </Header>
+                        <Subscript>
+                            <p>More information about your area</p>
+                        </Subscript>
+                    </Heading>
+                    <div class="w-full">
+                        <div>
+                            <h1 class="text-center">Your Solar flux</h1>
+                            <Image ImageName="@satteliteImageSrc" alt="Solar Sattelite Image" css="mx-auto" />
+                        </div>
+                        <ElevationGraph elevationValues="@locationData.horisonElevationData" animated="false" />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     }
 </div>
 @code {
@@ -153,22 +153,25 @@
     public string avgEnergyProduction = "";
     protected override async Task OnInitializedAsync()
     {
-        report = await reportClass.GetReport(int.Parse(ReportId!));   
+        report = await reportClass.GetReport(int.Parse(ReportId!));
         if (report != null)
         {
             latitude = report.latitude;
             longitude = report.longitude;
             Console.WriteLine("Current report: " + report.reportId);
             var result = await systemClass.GetSystem(report.systemId);
-            if(result != null) {
+            if (result != null)
+            {
                 system = result;
             }
 
             LocationDataModel? resultLocationData = await locationDataClass.GetLocationData(latitude, longitude);
-            if(resultLocationData != null) {
+            if (resultLocationData != null)
+            {
                 locationData = resultLocationData;
                 SatteliteImage = rooftopDataHandler.GetSatelliteImage(locationData.satteliteImageData!);
-                satteliteImageSrc = rooftopDataHandler.GetAnnualFluxMap(locationData.annualFluxData!, locationData.satteliteImageData!, locationData.maskData!);
+                satteliteImageSrc = rooftopDataHandler.GetAnnualFluxMap(locationData.annualFluxData!, locationData.satteliteImageData!,
+                locationData.maskData!);
             }
 
             Console.WriteLine("Current location: " + locationData.locationName);
@@ -196,7 +199,9 @@
             {
                 homeSize = report.homeSize + "-Home3.svg";
             }
-        } else {
+        }
+        else
+        {
             Console.WriteLine("Report not found");
         }
     }
