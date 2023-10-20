@@ -47,6 +47,7 @@ jobs:
           path: |
             src/dist/apps/services
             src/package.json
+            src/.puppeteerrc.cjs
 
   deploy:
     runs-on: ubuntu-latest
