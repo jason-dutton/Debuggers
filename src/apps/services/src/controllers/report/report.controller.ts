@@ -267,7 +267,6 @@ export default class ReportController {
       // Launch the browser and open a new blank page
       const browser = await puppeteer.launch({
         headless: true,
-        executablePath: '/usr/bin/chromium-browser',
         args: [ '--disable-gpu', '--disable-setuid-sandbox', '--no-sandbox', '--no-zygote' ]
       });
       const page = await browser.newPage();
