@@ -202,7 +202,7 @@
                                     count="@numOfPanels" />
                             </div>
                             <input type="range" class="accent-primary-800  cursor-pointer w-full " min="4" max="20" step="1"
-                            @bind-value="@numOfPanels" @oninput="ResetPanelTimer" />
+                            @bind-value="@tempNumOfPanels" @oninput="ResetPanelTimer" />
                         </div>
                         <div class="flex gap-2 pr-2 justify-start items-start">
                             <div class="flex flex-col gap-2 justify-center items-center w-full has-tooltip">
@@ -243,7 +243,7 @@
                             </div>
                         </div>
                         <input type="range" class="accent-primary-800  cursor-pointer w-full " min="1" max="6" step="1"
-                        @bind-value="@numOfBatteries" @oninput="ResetBatteryTimer" />
+                        @bind-value="@tempNumOfBatteries" @oninput="ResetBatteryTimer" />
                     </div>
 
                 </div>
@@ -302,7 +302,9 @@
     public double avgEnergyProduction = 0.0;
     public string? satteliteImage;
     public int numOfPanels = 8;
+    public int tempNumOfPanels = 8;
     public int numOfBatteries = 3;
+    public int tempNumOfBatteries = 3;
     public double appliancePowerUsage = 0.0;
     public int numFridges = 2;
     public int numTVs = 2;
@@ -316,12 +318,12 @@
 
     protected override void OnInitialized()
     {
-        panelTimer = new Timer(300);
+        panelTimer = new Timer(200);
         panelTimer.Elapsed += SetChargingLimit;
         panelTimer.AutoReset = false;
         panelTimer.Enabled = true;
 
-        batteryTimer = new Timer(300);
+        batteryTimer = new Timer(200);
         batteryTimer.Elapsed += SetRunningHours;
         batteryTimer.AutoReset = false;
         batteryTimer.Enabled = true;
@@ -356,20 +358,21 @@
 
     private void ResetPanelTimer(ChangeEventArgs e)
     {
-        numOfPanels = int.Parse(e.Value!.ToString()!);
+        tempNumOfPanels = int.Parse(e.Value!.ToString()!);
         panelTimer.Stop();
         panelTimer.Start();
     }
 
     private void ResetBatteryTimer(ChangeEventArgs e)
     {
-        numOfBatteries = int.Parse(e.Value!.ToString()!);
+        tempNumOfBatteries = int.Parse(e.Value!.ToString()!);
         batteryTimer.Stop();
         batteryTimer.Start();
     }
 
     private async void SetChargingLimit(Object? source, ElapsedEventArgs e)
     {
+        numOfPanels = tempNumOfPanels;
         if (locationData != null)
         {
             SetGraphicValues();
@@ -379,6 +382,7 @@
 
     private async void SetRunningHours(Object? source, ElapsedEventArgs e)
     {
+        numOfBatteries = tempNumOfBatteries;
         if (locationData != null)
         {
             SetGraphicValues();
