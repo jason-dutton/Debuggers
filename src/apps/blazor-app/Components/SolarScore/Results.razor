@@ -199,7 +199,7 @@
                                     <p>@tooltipService.GetTooltip("number of panels")</p>
                                 </Tooltip>
                                 <Appliance css="scale-90" imageName="SolarPanels.svg" name="Number of Panels"
-                                    count="@numOfPanels" />
+                                    count="@tempNumOfPanels" />
                             </div>
                             <input type="range" class="accent-primary-800  cursor-pointer w-full " min="4" max="20" step="1"
                             @bind-value="@tempNumOfPanels" @oninput="ResetPanelTimer" />
@@ -239,7 +239,7 @@
                                     <p>@tooltipService.GetTooltip("number of batteries")</p>
                                 </Tooltip>
                                 <Appliance css="scale-90" ImageName="Batteries.svg" name="Number of Batteries"
-                                    count="@numOfBatteries" />
+                                    count="@tempNumOfBatteries" />
                             </div>
                         </div>
                         <input type="range" class="accent-primary-800  cursor-pointer w-full " min="1" max="6" step="1"
@@ -323,7 +323,7 @@
         panelTimer.AutoReset = false;
         panelTimer.Enabled = true;
 
-        batteryTimer = new Timer(200);
+        batteryTimer = new Timer(100);
         batteryTimer.Elapsed += SetRunningHours;
         batteryTimer.AutoReset = false;
         batteryTimer.Enabled = true;
@@ -358,14 +358,14 @@
 
     private void ResetPanelTimer(ChangeEventArgs e)
     {
-        tempNumOfPanels = int.Parse(e.Value!.ToString()!);
+        tempNumOfPanels = Convert.ToInt32(e.Value);
         panelTimer.Stop();
         panelTimer.Start();
     }
 
     private void ResetBatteryTimer(ChangeEventArgs e)
     {
-        tempNumOfBatteries = int.Parse(e.Value!.ToString()!);
+        tempNumOfBatteries = Convert.ToInt32(e.Value);
         batteryTimer.Stop();
         batteryTimer.Start();
     }

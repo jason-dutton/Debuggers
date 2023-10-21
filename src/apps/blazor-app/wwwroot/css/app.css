@@ -1024,11 +1024,6 @@ video {
   margin-bottom: auto;
 }
 
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
 .-mb-2 {
   margin-bottom: -0.5rem;
 }
@@ -1502,6 +1497,10 @@ video {
   width: 2.75rem;
 }
 
+.w-11\/12 {
+  width: 91.666667%;
+}
+
 .w-12 {
   width: 3rem;
 }
@@ -1520,6 +1519,10 @@ video {
 
 .w-2\/3 {
   width: 66.666667%;
+}
+
+.w-2\/5 {
+  width: 40%;
 }
 
 .w-20 {
@@ -1750,14 +1753,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-11\/12 {
-  width: 91.666667%;
-}
-
-.w-2\/5 {
-  width: 40%;
 }
 
 .min-w-fit {
