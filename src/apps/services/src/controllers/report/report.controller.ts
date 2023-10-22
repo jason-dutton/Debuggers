@@ -262,11 +262,12 @@ export default class ReportController {
     try {
       const { userId, reportId } = req.params;
       console.log(
-        'Generating report, report id: ' + reportId + ' for user: ' + userId
+        'Generating report, report id: ' + reportId + ' For user: ' + userId
       );
       // Launch the browser and open a new blank page
       const browser = await puppeteer.launch({
         headless: true,
+        args: [ '--disable-gpu', '--disable-setuid-sandbox', '--no-sandbox', '--no-zygote' ]
       });
       const page = await browser.newPage();
       const frontend_port = process.env.FRONTEND_PORT;
