@@ -208,7 +208,8 @@
     private DataHandlers.SolarDataHandler solarDataHandler = new DataHandlers.SolarDataHandler();
     private DataHandlers.SystemsDataHandler systemsDataHandler = new DataHandlers.SystemsDataHandler();
     private SharedUtils.reportClass reportClass = new SharedUtils.reportClass();
-    private SharedUtils.reportAllApplianceClass reportAllApplianceClass = new SharedUtils.reportAllApplianceClass();
+    private SharedUtils.reportAllApplianceClass reportAllApplianceClass = new
+    SharedUtils.reportAllApplianceClass();
     private SharedUtils.locationDataClass locationDataClass = new SharedUtils.locationDataClass();
     private SharedUtils.systemClass systemClass = new SharedUtils.systemClass();
 
@@ -256,7 +257,6 @@
             {
                 system = result;
             }
-
             resultLocationData = await locationDataClass.GetLocationData(latitude, longitude);
             if (resultLocationData != null)
             {
@@ -272,6 +272,7 @@
                 usableHours = Math.Round(solarCalculator.getSunlightHours(resultLocationData!.solarPanelsData, true), 2);
                 annualKWGenerated = solarDataHandler.getAnnualKwGenerated(system.numberOfPanels, resultLocationData.solarPanelsData);
                 wholeroofstats = resultLocationData.solarPanelsData!.solarPotential!.wholeRoofStats;
+
             }
             reportAllAppliance = await reportAllApplianceClass.GetReportAllApplianceByReportId(int.Parse(ReportId!));
             runningHoursPercentage = systemsDataHandler.CalculateRunningHours(system.numberOfBatteries, system.batterySize * 1000,
@@ -310,7 +311,6 @@
                 homeSize = report.homeSize + "-Home3.svg";
             }
             isLoaded = true;
-
             StateHasChanged();
         }
         else
