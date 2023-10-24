@@ -12,8 +12,9 @@ public class BusinessBestSolarPanelsRepository
     private string? mapboxAccessToken = Environment.GetEnvironmentVariable("MAP_BOX_API_KEY");
 
    
-    public async Task<string> GetProcessedDataAsync(BestSolarPanelsInput bestSolarPanelsInput)
+    public async Task<List<BestSolarPanelsOutput>> GetProcessedDataAsync(BestSolarPanelsInput bestSolarPanelsInput)
     {
+        var returnDataJson = new object();
         LocationDataModel? currentLocationData = new LocationDataModel();
         try
         {
@@ -26,10 +27,10 @@ public class BusinessBestSolarPanelsRepository
 
             if(numPanels==0)
             {
-                return "Number of panels left blank, or cannot be 0.";
+                throw new Exception("Number of panels cannot be left out, or be zero.");
             } else if(numPanels<0)
             {
-                return "Number of panels cannot be negative.";
+                throw new Exception("Number of panels cannot be negative.");
             }
 
             LocationDataModel? locationData = await locationDataClass.GetLocationData(latitude, longitude);
@@ -38,14 +39,8 @@ public class BusinessBestSolarPanelsRepository
             {                
                 await locationDataClass.CreateLocationData(latitude, longitude, locationName);
             }
-
             List<BestSolarPanelsOutput> solarPanels = await GetBestSolarPanelsOutputAsync(numPanels, latitude, longitude);
-            dataTypeResponse.Content = new StringContent(JsonConvert.SerializeObject(solarPanels));
-
-            return await dataTypeResponse.Content.ReadAsStringAsync();
-
-
-
+            return solarPanels;
         }
         catch (Exception)
         {
