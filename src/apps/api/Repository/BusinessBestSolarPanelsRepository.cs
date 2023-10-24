@@ -42,12 +42,12 @@ public class BusinessBestSolarPanelsRepository
                 throw new Exception("Number of panels cannot be negative.");
             }
 
-            LocationDataModel? locationData = await GetLocationData(latitude, longitude);
-            locationName = await GetLocationNameFromCoordinates(latitude, longitude);
-            if (locationData == null)
-            {                
-                await CreateLocationData(latitude, longitude, locationName);
-            }
+            // LocationDataModel? locationData = await GetLocationData(latitude, longitude);
+            // locationName = await GetLocationNameFromCoordinates(latitude, longitude);
+            // if (locationData == null)
+            // {                
+            //     await CreateLocationData(latitude, longitude, locationName);
+            // }
             List<BestSolarPanelsOutput> solarPanels = await GetBestSolarPanelsOutputAsync(numPanels, latitude, longitude);
             return solarPanels;
         }
