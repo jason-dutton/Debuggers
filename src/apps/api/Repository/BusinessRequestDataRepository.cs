@@ -44,12 +44,6 @@ public class BusinessRequestDataRepository
             var client = new HttpClient();
             var request = new HttpRequestMessage(HttpMethod.Get, express + "/api/locationData/" + latitude + "/" + longitude);
 
-            // locationName = await GetLocationNameFromCoordinates(latitude, longitude);
-            // if (locationName == "")
-            // {
-            //     throw new Exception("Invalid coordinates");
-            // }
-
             var returnDataJson = new object();
             typeOfData = data!;
             switch(data!.ToLower()){
