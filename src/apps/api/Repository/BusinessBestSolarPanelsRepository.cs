@@ -4,9 +4,7 @@ using Newtonsoft.Json;
 namespace Api.Repository;
 
 public class BusinessBestSolarPanelsRepository
-{
-    
-    // private SharedUtils.locationDataClass locationDataClass = new SharedUtils.locationDataClass();
+{ 
     private DataHandlers.SolarDataHandler solarCalculator = new DataHandlers.SolarDataHandler();
     private DataHandlers.RooftopDataHandler rooftopDataHandler = new DataHandlers.RooftopDataHandler();
     private string locationName = "";
