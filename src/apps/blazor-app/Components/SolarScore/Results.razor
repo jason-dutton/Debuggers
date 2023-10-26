@@ -373,6 +373,7 @@
 
     private async void SetChargingLimit(Object? source, ElapsedEventArgs e)
     {
+        numOfPanels = tempNumOfPanels;
         if (locationData != null)
         {
             SetGraphicValues();
