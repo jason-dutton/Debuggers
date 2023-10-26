@@ -187,7 +187,7 @@ public class BusinessRequestDataRepository
         if (elevationData == null)
         {
             Console.WriteLine("Elevation data not found");
-            return null;
+            return "";
         }
         Console.WriteLine("1");
         string horisonElevationData = elevationData;
@@ -196,7 +196,7 @@ public class BusinessRequestDataRepository
         if (locationData == null)
         {
             Console.WriteLine("Rooftop data not found");
-            return null;
+            return "";
         }
         
 
