@@ -55,8 +55,10 @@
 
     @* Solar Score and Potential Savings *@
     <div class="relative w-full xl:w-3/5 flex flex-col sm:flex-shrink-0 xl:gap-10 md:gap-4">
-        <Image ImageName="Robert_Pointing_Down.png" css="absolute right-24 -top-14 xl:-top-16 z-0 h-32 hidden lg:block" alt="Rob" />
-        <Card css="relative border-2 scale-90 flex flex-col gap-2 xl:scale-100 border-primary-300 p-4 w-full h-fit my-auto z-10">
+        <Image ImageName="Robert_Pointing_Down.png" css="absolute right-24 -top-14 xl:-top-16 z-0 h-32 hidden lg:block"
+            alt="Rob" />
+        <Card
+            css="relative border-2 scale-90 flex flex-col gap-2 xl:scale-100 border-primary-300 p-4 w-full h-fit my-auto z-10">
             @if (solarScore == -1)
             {
                 <SolarScoreSkeleton />
@@ -103,9 +105,9 @@
                             <div
                                 class="w-1/2 h-full flex gap-2 justify-center p-3 my-auto bg-white items-center rounded-2xl">
                                 <p class="text-center text-xl font-bold">R </p>
-                                    @{
-                                        var savings = Math.Round(avgEnergyProduction * 2.5 * 30, 0);
-                                    }
+                                @{
+                                    var savings = Math.Round(avgEnergyProduction * 2.5 * 30, 0);
+                                }
                                 <p class="text-center text-xl font-bold">@savings</p>
                                 <p class="text-center text-gray-400 text-xl font-bold">p/m </p>
                             </div>
@@ -117,7 +119,8 @@
         <Image ImageName="Robert_T_Pose.png" css="scale-75 absolute left-40 top-[235px] z-0 h-32  hidden lg:block" alt="Rob T Posing" />
 
         @* Potential System *@
-        <Card css="relative border-2 scale-90 flex flex-col gap-2 xl:scale-100 border-primary-300 p-4 w-full h-fit my-auto z-10">
+        <Card
+            css="relative border-2 scale-90 flex flex-col gap-2 xl:scale-100 border-primary-300 p-4 w-full h-fit my-auto z-10">
             @if (locationData == null)
             {
                 <PotentialSystemSkeleton />
@@ -198,7 +201,7 @@
                                         <p class="md:w-72">@tooltipService.GetTooltip("number of panels")</p>
                                     </Tooltip>
                                 <Appliance css="scale-90" imageName="SolarPanels.svg" name="Number of Panels"
-                                    count="@numOfPanels" />
+                                    count="@tempNumOfPanels" />
                             </div>
                             <input type="range" class="accent-primary-800 scale-150 w-2/3 lg:scale-100 lg:w-full  cursor-pointer " min="4" max="20"
                                 step="1" @bind-value="@numOfPanels" @oninput="ResetPanelTimer" />
@@ -209,19 +212,22 @@
                                     <Tooltip pointer="98" direction="left" translateX="-105">
                                         <p  class="md:w-72">@tooltipService.GetTooltip("battery utilisation")</p>
                                     </Tooltip>
-                                    <div class="h-28 shadow flex-col-reverse flex w-20 p-1 bg-gray-300 relative  rounded-lg">
-                                            @{
-                                                var percentage = chargingLimitPercentage + "%";
-                                            }
+                                    <div
+                                        class="h-28 shadow flex-col-reverse flex w-20 p-1 bg-gray-300 relative  rounded-lg">
+                                        @{
+                                            var percentage = chargingLimitPercentage + "%";
+                                        }
                                         <div style="height: @percentage"
                                             class='w-full transition-all rounded-lg @(chargingLimitPercentage > 0 && chargingLimitPercentage < 25 ? "bg-red-accent-500" : chargingLimitPercentage > 25 && chargingLimitPercentage < 50 ? "bg-yellow-accent-500" : chargingLimitPercentage > 50 && chargingLimitPercentage < 75 ? "bg-primary-500" : "bg-primary-800")'>
                                         </div>
-                                            <div class="flex gap-1 absolute bottom-2 left-1/2 -translate-x-1/2 ">
+                                        <div class="flex gap-1 absolute bottom-2 left-1/2 -translate-x-1/2 ">
                                             <p
                                                 class='@(chargingLimitPercentage > 75 ? "text-primary-400" : chargingLimitPercentage < 25 ? "text-primary-100" : "text-primary-900") font-bold text-md'>
                                                 @chargingLimitPercentage
                                             </p>
-                                            <p class='@(chargingLimitPercentage > 75 ? "text-primary-300" : chargingLimitPercentage < 25 ? "text-primary-300" :"text-primary-700")'>%</p>
+                                            <p
+                                                class='@(chargingLimitPercentage > 75 ? "text-primary-300" : chargingLimitPercentage < 25 ? "text-primary-300" :"text-primary-700")'>
+                                                %</p>
                                         </div>
                                         <div
                                             class="w-8 h-4 -z-10 bg-gray-300 rounded-md absolute -top-2 left-1/2 -translate-x-1/2">
@@ -235,7 +241,7 @@
                                         <p class="md:w-72">@tooltipService.GetTooltip("number of batteries")</p>
                                     </Tooltip>
                                 <Appliance css="scale-90" ImageName="Batteries.svg" name="Number of Batteries"
-                                    count="@numOfBatteries" />
+                                    count="@tempNumOfBatteries" />
                             </div>
                         </div>
                         <input type="range" class="accent-primary-800 scale-150 w-2/3 lg:scale-100 lg:w-full cursor-pointer -mt-5" min="1" max="6" step="1"
@@ -265,7 +271,8 @@
     </div>
 </ModalPopup>
 <ModalPopup @ref="ModalPopupAppliances" Title="Continue with adding appliances?">
-    <p class="max-w-md">You can add or remove appliances to get more accurate power usages for your location on our calculations page.</p>
+    <p class="max-w-md">You can add or remove appliances to get more accurate power usages for your location on our
+        calculations page.</p>
     <p class="max-w-md">Go to calculations page now?</p>
     <div class="flex flex-row gap-4 justify-center">
         <div @onclick="ModalPopupAppliances.Dismiss">
@@ -294,7 +301,9 @@
     public double avgEnergyProduction = 0.0;
     public string? satteliteImage;
     public int numOfPanels = 8;
+    public int tempNumOfPanels = 8;
     public int numOfBatteries = 3;
+    public int tempNumOfBatteries = 3;
     public double appliancePowerUsage = 0.0;
     public int numFridges = 2;
     public int numStove = 2;
@@ -315,16 +324,20 @@
         panelTimer.AutoReset = false;
         panelTimer.Enabled = true;
 
-        batteryTimer = new Timer(200);
+        batteryTimer = new Timer(100);
         batteryTimer.Elapsed += SetRunningHours;
         batteryTimer.AutoReset = false;
         batteryTimer.Enabled = true;
     }
 
-    private async Task GetSatteliteImage() {
-        if(locationData != null && locationData.satteliteImageData == null) {
-            locationData = await locationDataClass.GetSatelliteImageData(locationData.latitude, locationData.longitude, locationData);
-            if(locationData != null && locationData.satteliteImageData != null) {
+    private async Task GetSatteliteImage()
+    {
+        if (locationData != null && locationData.satteliteImageData == null)
+        {
+            locationData = await locationDataClass.GetSatelliteImageData(locationData.latitude, locationData.longitude,
+            locationData);
+            if (locationData != null && locationData.satteliteImageData != null)
+            {
                 Console.WriteLine("Getting sattelite image");
                 satteliteImage = rooftopDataHandler.GetSatelliteImage(locationData.satteliteImageData);
                 StateHasChanged();
@@ -346,14 +359,14 @@
 
     private void ResetPanelTimer(ChangeEventArgs e)
     {
-        numOfPanels = int.Parse(e.Value!.ToString()!);
+        tempNumOfPanels = Convert.ToInt32(e.Value);
         panelTimer.Stop();
         panelTimer.Start();
     }
 
     private void ResetBatteryTimer(ChangeEventArgs e)
     {
-        numOfBatteries = int.Parse(e.Value!.ToString()!);
+        tempNumOfBatteries = Convert.ToInt32(e.Value);
         batteryTimer.Stop();
         batteryTimer.Start();
     }
@@ -369,6 +382,7 @@
 
     private async void SetRunningHours(Object? source, ElapsedEventArgs e)
     {
+        numOfBatteries = tempNumOfBatteries;
         if (locationData != null)
         {
             SetGraphicValues();
